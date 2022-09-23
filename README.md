@@ -1,10 +1,13 @@
 # ML-IMCAnalysis
-A machine learning pipeline for the analysis of IMC data, including a novel augmentation approach.
+<i>A machine learning pipeline for the analysis of IMC data, including a novel augmentation approach.</i>
 
-phenograph-clustering.py contains code to identify clusters from each ROI dataset using PhenoGraph.
+The goal of the task here is to develop an end-to-end pipeline for ML-based analysis of IMC multi-channel data including a novel cell-level augmentation approach to increase data diversity, hence the generalizability of ML models. To demonstrate the utility of the proposed pipeline, we studied the association of the TME with various clinical parameters in a cohort of patients with muscle invasive bladder cancer (MIBC). We designed several experiments with signatures of IMC data and classification approaches and demonstrated that the combination of cell types found within the TME show promise as a foundation for future clinical research in this field.
 
-sector-elimination.py contains code for our novel sector elimination augmentation approach. This code will generate the augmented data points.
+## Files
+<b>phenograph-clustering.py</b> contains code to identify clusters of cells from each ROI dataset with similar expression profiles using PhenoGraph. Using the resulting clusters, a pathologist annotates the cell type of each cluster based on the protein expressions.
 
-ml-analysis.py shows example code for predicting recurrence. 
+<b>sector-elimination.py</b> contains code for our novel sector elimination augmentation approach. For each tissue sample, we suggest to exclude all cells within a randomly selected 30 degree spatial pie section of the images. This process was randomly repeated 50 times for each of the tissue samples. After augmenting, the proportions of each cell type within a sample was calculated and used as the features for that sample. This code will generate the augmented data points.
+
+<b>ml-analysis.py</b> shows example code for predicting the clinical outcome recurrence. Feature relevance is scored using ANOVA f-scores. We used logistic regression (LR), random forest (RF), decision tree (DT), k-nearest neighbour (KNN), and an ensemble of all four models, in a 4-fold cross validation configuration, to validate the performance of varying numbers of top ranked features. For each classifier, the default parameters were used. During fold generation, care was taken to ensure that all data samples from a single patient remained in the same fold. We also used Synthetic Minority Over-sampling Technique (SMOTE) to balance the data, such that each fold contained an equivalent amount of the label we were approximating. The cross validation for each classifier was repeated 50 times - each time with different, randomly generated folds - and the average accuracy of the classifiers on the test fold data in all runs was reported. Based on the results of the experiments, we decided on the optimal number of ranked features, along with the top performing classifier, for each label. 
 
 Citation: https://doi.org/10.1109/BHI50953.2021.9508569
