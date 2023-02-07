@@ -1,4 +1,4 @@
-# ML-IMCAnalysis
+# Machine Learning for Clinical Outcome Prediction
 <i>A machine learning pipeline for the analysis of IMC data, including a novel augmentation approach.</i>
 
 The goal of the task here is to develop an end-to-end pipeline for ML-based analysis of IMC multi-channel data including a novel cell-level augmentation approach to increase data diversity, hence the generalizability of ML models. To demonstrate the utility of the proposed pipeline, we studied the association of the TME with various clinical parameters in a cohort of patients with muscle invasive bladder cancer (MIBC). We designed several experiments with signatures of IMC data and classification approaches and demonstrated that the combination of cell types found within the TME show promise as a foundation for future clinical research in this field.
